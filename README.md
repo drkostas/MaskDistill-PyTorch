@@ -1,12 +1,10 @@
 # MaskDistill-PyTorch
 
-**The first open-source PyTorch implementation of MaskDistill with pre-trained weights.**
+**Unofficial PyTorch implementation and reproduction of ["A Unified View of Masked Image Modeling"](https://arxiv.org/abs/2210.10615) (MaskDistill, arXiv 2022).**
 
-This repository provides a clean PyTorch implementation of [MaskDistill](https://arxiv.org/abs/2210.10615) ("A Unified View of Masked Image Modeling"), a self-supervised learning framework that distills knowledge from a frozen CLIP teacher into a Vision Transformer student through masked image modeling.
+No official code or pre-trained weights were ever released for this paper. This repository provides a clean from-scratch implementation with **verified reproduced results** and **open pre-trained checkpoints** for all downstream tasks.
 
-> **Note:** This is an unofficial implementation. No official code or pre-trained weights were released by the original authors. See [Comparison with Existing Implementations](#comparison-with-existing-implementations) for details.
-
-**Links:** [Pre-trained Weights](https://huggingface.co/drkostas/MaskDistill-ViT-Base)
+**[Pre-trained Weights on HuggingFace](https://huggingface.co/drkostas/MaskDistill-ViT-Base)**
 
 ## Key Results (ViT-B/16, ImageNet-1K)
 
