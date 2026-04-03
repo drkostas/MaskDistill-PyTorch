@@ -30,16 +30,16 @@ MaskDistill combines masked image modeling with knowledge distillation from CLIP
 5. **Distill** by minimizing smooth L1 loss between student predictions and frozen CLIP ViT-B/16 teacher features on masked positions
 
 ```
-                      ┌──────────────┐
-  Full Image ────────>│ CLIP Teacher │──── Teacher Features (frozen)
-                      │  (ViT-B/16)  │           │
-                      └──────────────┘           │
-                                           Smooth L1 Loss
-                                          (masked positions)
-                      ┌──────────────┐           │
-  Masked Image ─────>│    Student   │──── Student Predictions
-    (mask tokens)     │  (ViT-Base)  │     (via distill head)
-                      └──────────────┘
+                     ┌──────────────┐
+  Full Image ──────> │ CLIP Teacher │──── Teacher Features (frozen)
+                     │  (ViT-B/16)  │           │
+                     └──────────────┘           │
+                                          Smooth L1 Loss
+                                         (masked positions)
+                     ┌──────────────┐           │
+  Masked Image ───-> │   Student    │──── Student Predictions
+   (mask tokens)     │  (ViT-Base)  │     (via distill head)
+                     └──────────────┘
 ```
 
 An alternative sparse encoding mode (MAE-style, drop masked patches) is also supported via `pretrain_random75.yaml`.
