@@ -10,7 +10,7 @@ No official code or pre-trained weights were ever released for this paper. This 
 
 | Evaluation | Paper | Ours |
 |------------|:-----:|:----:|
-| Finetuning (top-1) | 85.3% | *training* |
+| Finetuning (top-1) | 85.3% | **84.8%** |
 | Sem. Seg. (mIoU, ADE20K) | 53.8 | **52.6** |
 | k-NN (k=10) | — | **75.6%** |
 | Linear Probe | — | **76.3%** |
@@ -116,7 +116,7 @@ All checkpoints are available on [HuggingFace](https://huggingface.co/drkostas/M
 | Checkpoint | Result | Download |
 |-----------|--------|----------|
 | ViT-B/16 pretrain (300 ep) | 75.6% k-NN | [pretrain_vit_base_ep290.pth](https://huggingface.co/drkostas/MaskDistill-ViT-Base/resolve/main/pretrain_vit_base_ep290.pth) |
-| ViT-B/16 finetuned (100 ep) | *training* | coming soon |
+| ViT-B/16 finetuned (100 ep) | 84.8% top-1 | [finetune_vit_base_ep100.pth](https://huggingface.co/drkostas/MaskDistill-ViT-Base/resolve/main/finetune_vit_base_ep100.pth) |
 | ViT-B/16 linear probe (90 ep) | 76.3% top-1 | [linprobe_vit_base_ep90.pth.tar](https://huggingface.co/drkostas/MaskDistill-ViT-Base/resolve/main/linprobe_vit_base_ep90.pth.tar) |
 | UPerNet semseg (160K iter) | 52.6 mIoU | [semseg_upernet_ade20k_160k.pth](https://huggingface.co/drkostas/MaskDistill-ViT-Base/resolve/main/semseg_upernet_ade20k_160k.pth) |
 | Mask R-CNN det (12 ep) | 44.4 mAP | [detection_maskrcnn_coco_12ep.pth](https://huggingface.co/drkostas/MaskDistill-ViT-Base/resolve/main/detection_maskrcnn_coco_12ep.pth) |

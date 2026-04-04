@@ -85,6 +85,7 @@ MaskDistill learns visual representations by distilling knowledge from a frozen 
 
 | Evaluation | Result |
 |-----------|--------|
+| Finetuning (ImageNet-1K) | **84.8%** top-1 |
 | k-NN (k=10) | **75.6%** top-1 |
 | Linear Probe | **76.3%** top-1 |
 | Sem. Seg. (ADE20K, UPerNet) | **52.6** mIoU |
@@ -96,6 +97,7 @@ MaskDistill learns visual representations by distilling knowledge from a frozen 
 | File | Description |
 |------|------------|
 | `pretrain_vit_base_ep290.pth` | Pretrained ViT-Base (300 epochs) |
+| `finetune_vit_base_ep100.pth` | Finetuned on ImageNet-1K (84.8% top-1) |
 | `linprobe_vit_base_ep90.pth.tar` | Linear probe (90 epochs, 76.3% top-1) |
 | `semseg_upernet_ade20k_160k.pth` | UPerNet on ADE20K (52.6 mIoU) |
 | `detection_maskrcnn_coco_12ep.pth` | Mask R-CNN on COCO (44.4 mAP) |

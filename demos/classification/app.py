@@ -54,20 +54,29 @@ linear_head.eval()
 print("Linear probe loaded (76.3% top-1)")
 
 # ── Finetuned Head (loaded if available) ─────────────────────────────────────
-finetune_head = None
+# ── Finetuned Model (separate ViT with classification head) ──────────────────
+finetune_model = None
 try:
     ft_path = hf_hub_download(repo_id, "finetune_vit_base_ep100.pth")
     print("Loading finetuned checkpoint...")
-    # TODO: load finetuned model when checkpoint is available
-    # finetune_head = ...
-    print("Finetuned model loaded")
-except Exception:
-    print("Finetuned checkpoint not yet available")
+    ft_ckpt = torch.load(ft_path, map_location="cpu", weights_only=False)
+    ft_state = ft_ckpt.get("model", ft_ckpt)
+    # Strip DDP prefix
+    ft_clean = {k.replace("module.", ""): v for k, v in ft_state.items()}
+
+    from timm import create_model
+    finetune_model = create_model("beit_base_patch16_224", pretrained=False, num_classes=1000,
+                                  use_rel_pos_bias=True, init_values=0.1)
+    msg = finetune_model.load_state_dict(ft_clean, strict=False)
+    finetune_model.eval()
+    print(f"Finetuned model loaded (84.8% top-1), {len(msg.missing_keys)} missing, {len(msg.unexpected_keys)} unexpected")
+except Exception as e:
+    print(f"Finetuned checkpoint not available: {e}")
 
 # ── Available models ─────────────────────────────────────────────────────────
 MODELS = ["Linear Probe (76.3% top-1)"]
-if finetune_head is not None:
-    MODELS.append("Finetuned (85.X% top-1)")
+if finetune_model is not None:
+    MODELS.insert(0, "Finetuned (84.8% top-1)")
 
 # ── Transform ────────────────────────────────────────────────────────────────
 transform = transforms.Compose([
@@ -93,8 +102,7 @@ def classify(image, model_choice):
             combined = torch.cat([cls_token, patch_avg], dim=-1)
             logits = linear_head(combined)
         else:
-            # Finetuned path (when available)
-            logits = finetune_head(img)
+            logits = finetune_model(img)
 
         probs = F.softmax(logits, dim=-1)[0]
 
