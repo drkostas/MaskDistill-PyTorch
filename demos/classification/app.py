@@ -54,24 +54,38 @@ linear_head.eval()
 print("Linear probe loaded (76.3% top-1)")
 
 # ── Finetuned Head (loaded if available) ─────────────────────────────────────
-# ── Finetuned Model (separate ViT with classification head) ──────────────────
+# ── Finetuned Model (uses modeling_finetune.VisionTransformer architecture) ──
 finetune_model = None
 try:
     ft_path = hf_hub_download(repo_id, "finetune_vit_base_ep100.pth")
     print("Loading finetuned checkpoint...")
+
+    # The finetuned model was trained with modeling_finetune.py's VisionTransformer
+    # which has different attention (fused qkv.bias) and uses fc_norm for mean pooling.
+    # We import it from the downstream code bundled in the Space.
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src", "downstream"))
+    from modeling_finetune import VisionTransformer as FineTuneViT
+
+    finetune_model = FineTuneViT(
+        img_size=224, patch_size=16, embed_dim=768, depth=12, num_heads=12,
+        mlp_ratio=4.0, qkv_bias=True, init_values=0.1, drop_path_rate=0.1,
+        use_shared_rel_pos_bias=True, use_mean_pooling=True, num_classes=1000,
+    )
     ft_ckpt = torch.load(ft_path, map_location="cpu", weights_only=False)
     ft_state = ft_ckpt.get("model", ft_ckpt)
-    # Strip DDP prefix
     ft_clean = {k.replace("module.", ""): v for k, v in ft_state.items()}
-
-    from timm import create_model
-    finetune_model = create_model("beit_base_patch16_224", pretrained=False, num_classes=1000,
-                                  use_rel_pos_bias=True, init_values=0.1)
     msg = finetune_model.load_state_dict(ft_clean, strict=False)
     finetune_model.eval()
     print(f"Finetuned model loaded (84.8% top-1), {len(msg.missing_keys)} missing, {len(msg.unexpected_keys)} unexpected")
+    if msg.missing_keys:
+        print(f"  Missing: {msg.missing_keys[:5]}")
+    if msg.unexpected_keys:
+        print(f"  Unexpected: {msg.unexpected_keys[:5]}")
 except Exception as e:
+    import traceback
+    traceback.print_exc()
     print(f"Finetuned checkpoint not available: {e}")
+    finetune_model = None
 
 # ── Available models ─────────────────────────────────────────────────────────
 MODELS = ["Linear Probe (76.3% top-1)"]
