@@ -44,8 +44,9 @@ datasets/
 *.zip
 *.tar
 
-# Internal docs (not for public)
+# Internal docs and local settings (not for public)
 docs/
+local/
 
 # Secrets
 .env
