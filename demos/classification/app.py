@@ -86,7 +86,7 @@ def classify(image, model_choice):
 
     with torch.no_grad():
         if "Linear Probe" in model_choice:
-            features = backbone.get_intermediate_layers(img, use_last_norm=False)
+            features = backbone.get_intermediate_layers(img, use_last_norm=True)
             feat = features[BEST_LAYER]
             cls_token = feat[:, 0]
             patch_avg = feat[:, 1:].mean(dim=1)
