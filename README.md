@@ -6,7 +6,7 @@ No official code or pre-trained weights were ever released for this paper. This 
 
 **[Pre-trained Weights](https://huggingface.co/drkostas/MaskDistill-ViT-Base)** | <a href="https://huggingface.co/spaces/drkostas/maskdistill-classification"><img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm.svg" alt="Open in Spaces"></a>
 
-> **See also: [MEDiC](https://github.com/drkostas/MEDiC)** -- extends MaskDistill with CLS distillation, pixel reconstruction, and evolved part masking (<a href="https://huggingface.co/spaces/drkostas/MEDiC-Evolved-Masking"><img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm-dark.svg" alt="MEDiC Demo" style="display:inline;vertical-align:middle"></a>)
+> **See also: [MEDiC](https://github.com/aicip/MEDiC)** -- extends MaskDistill with CLS distillation, pixel reconstruction, and evolved part masking (<a href="https://huggingface.co/spaces/drkostas/MEDiC-Evolved-Masking"><img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm-dark.svg" alt="MEDiC Demo" style="display:inline;vertical-align:middle"></a>)
 
 ## Key Results (ViT-B/16, ImageNet-1K)
 
