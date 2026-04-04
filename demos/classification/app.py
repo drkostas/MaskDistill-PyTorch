@@ -23,7 +23,7 @@ def classify(image):
     info = "## MaskDistill Image Classification\n\n"
     info += "**Model**: MaskDistill ViT-Base/16 finetuned on ImageNet-1K\n\n"
     info += "**Training**: 300 epoch pretrain + 100 epoch finetune\n\n"
-    info += "**Results**: **75.6% k-NN** | finetuning results coming soon\n\n"
+    info += "**Results**: **75.6% k-NN** | **76.3% linear probe** | finetuning in progress\n\n"
     info += "---\n\n"
     info += "### Status\n\n"
     info += "Finetuning is in progress. Full interactive classification will be "
