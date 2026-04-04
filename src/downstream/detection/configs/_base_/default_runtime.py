@@ -26,7 +26,7 @@ log_config = dict(
             type='WandbLoggerHook',
             init_kwargs=dict(
                 project='MaskDistill_detection',
-                entity=None  # Set to your W&B entity,
+                entity=None,  # Set to your W&B entity
                 # name will be set by train.py based on checkpoint
             ),
             interval=50,

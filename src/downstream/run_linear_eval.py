@@ -126,7 +126,7 @@ def eval_linear(args):
         wandb_name = utils.derive_wandb_name_from_checkpoint(args.pretrained_weights, "lin")
         log_writer = utils.WandbLogger(
             project_name="MaskDistill_linear",
-            entity=None  # Set to your W&B entity,
+            entity=None,  # Set to your W&B entity
             config=vars(args),
             name=wandb_name
         )
