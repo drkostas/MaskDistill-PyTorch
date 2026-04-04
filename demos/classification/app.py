@@ -35,10 +35,9 @@ backbone = VisionTransformerMIM(
 )
 
 print("Loading pretrained weights...")
-pretrain_path = hf_hub_download(repo_id, "pretrain_vit_base_ep290.pth")
+pretrain_path = hf_hub_download(repo_id, "pretrain_vit_base_student_only.pth")
 ckpt = torch.load(pretrain_path, map_location="cpu", weights_only=False)
-state = {k.replace("module.student.", ""): v for k, v in ckpt["model"].items()
-         if k.startswith("module.student.")}
+state = ckpt["model"]  # Already stripped to student keys
 backbone.load_state_dict(state, strict=False)
 backbone.eval()
 print(f"Backbone: {sum(p.numel() for p in backbone.parameters())/1e6:.0f}M params")
