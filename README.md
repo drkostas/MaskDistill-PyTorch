@@ -8,6 +8,8 @@ No official code or pre-trained weights were ever released for this paper. This 
 
 > **See also: [MEDiC](https://github.com/aicip/MEDiC)** -- extends MaskDistill with CLS distillation, pixel reconstruction, and evolved part masking (<a href="https://huggingface.co/spaces/drkostas/MEDiC-Evolved-Masking"><img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-sm-dark.svg" alt="MEDiC Demo" style="display:inline;vertical-align:middle"></a>)
 
+> **See also: [ExPLoRe](https://github.com/aicip/ExPLoRe)** -- turns Soft-MoE dispatch weights into per-patch loss coefficients for multi-objective masked image modeling ([ECCV 2026](https://doi.org/10.1007/978-3-032-37314-4_16))
+
 ## Key Results (ViT-B/16, ImageNet-1K)
 
 | Evaluation | Paper | Ours |
