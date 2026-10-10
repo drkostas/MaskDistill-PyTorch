@@ -1,3 +1,5 @@
+![MaskDistill-PyTorch](assets/banner.png)
+
 # MaskDistill-PyTorch
 
 **Unofficial PyTorch implementation and reproduction of ["A Unified View of Masked Image Modeling"](https://arxiv.org/abs/2210.10615) (MaskDistill, arXiv 2022).**
