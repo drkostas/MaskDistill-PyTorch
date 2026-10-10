@@ -1,0 +1,19 @@
+kind: banner
+name: MaskDistill-PyTorch
+line: A PyTorch reproduction of MaskDistill, with trained weights for anyone to use.
+accent: blue
+diagram:
+- panes:
+    rows: 2
+    cols: 2
+    highlight:
+    - 1
+    - 1
+    label: masked image
+- arrow
+- box:
+    text: ViT student
+    accent: true
+- dots: distill
+- box:
+    text: CLIP teacher
